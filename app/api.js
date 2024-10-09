@@ -28,42 +28,6 @@ async function fetchAccessToken() {
 	}
 }
 
-// Function to construct service URL based on provider
-function getServiceURL(provider, sysId) {
-	const baseUrl = 'https://api-compass.speedcast.com/v2.0';
-
-	switch (provider) {
-		case 'starlink':
-			return `${baseUrl}/starlink/${sysId}`;
-		case 'idirect':
-			return `${baseUrl}/idirectmodem/${sysId}`;
-		case 'newtec':
-			return `${baseUrl}/newtecmodem/${sysId}`;
-		case 'oneweb':
-			return `${baseUrl}/oneweb/${sysId}`; // TODO: Test, fix with terminalId (see docs)
-		default:
-			return null;
-	}
-}
-
-// Function to construct GPS URL based on provider
-function getGPSURL(provider) {
-	const baseUrl = 'https://api-compass.speedcast.com/v2.0';
-
-	switch (provider) {
-		case 'starlink':
-			return `${baseUrl}/starlinkgps`;
-		case 'idirect':
-			return `${baseUrl}/idirectgps`;
-		case 'newtec':
-			return `${baseUrl}/newtecgps`;
-		case 'oneweb':
-			return `${baseUrl}/oneweb`; // TODO: Test, fix with terminalId (see docs)
-		default:
-			return null;
-	}
-}
-
 // Function to fetch modem data for each company
 async function fetchCompanyServices(provider, params, accessToken) {
 	const url = getServiceURL(provider, params);

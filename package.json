@@ -33,6 +33,7 @@
     "@shopify/shopify-app-remix": "^3.3.2",
     "@shopify/shopify-app-session-storage-prisma": "^5.0.2",
     "axios": "^1.7.7",
+    "chart.js": "^4.4.4",
     "ejs": "^3.1.10",
     "express": "^4.21.1",
     "isbot": "^5.1.0",
