@@ -37,6 +37,24 @@ const ThroughputChart = ({ throughputTimestamps, throughputDownload, throughputU
 					},
 				],
 			},
+			options: {
+				transitions: {
+					show: {
+						animations: {
+							x: {
+								from: 0,
+							},
+						},
+					},
+					hide: {
+						animations: {
+							x: {
+								to: 0,
+							},
+						},
+					},
+				},
+			},
 		});
 	}, [throughputTimestamps, throughputDownload, throughputUpload]);
 

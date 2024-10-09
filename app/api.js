@@ -1,9 +1,10 @@
-// Import required libraries
-const dotenv = require('dotenv');
+// Env variables S
+import dotenv from 'dotenv';
 dotenv.config();
 
-// Set API URL and access token
-const apiUrl = 'https://api-compass.speedcast.com/v1/services';
+const username = process.env.COMPASS_API_USERNAME;
+const password = process.env.COMPASS_API_PASSWORD;
+const compassCompany = process.env.COMPASS_COMPANY_ID;
 const accessToken = await fetchAccessToken();
 
 // Helper function to get the access token
@@ -15,8 +16,8 @@ async function fetchAccessToken() {
 			'Content-Type': 'application/json',
 		},
 		body: JSON.stringify({
-			username: process.env.COMPASS_API_USERNAME,
-			password: process.env.COMPASS_API_PASSWORD,
+			username: username,
+			password: password,
 		}),
 	});
 
@@ -50,7 +51,7 @@ async function fetchCompanyServices(provider, params, accessToken) {
 // Function to fetch and handle services for all providers
 async function fetchAllServices(accessToken) {
 	const baseUrl = 'https://api-compass.speedcast.com/v2.0';
-	const companyId = process.env.COMPASS_COMPANY_ID;
+	const companyId = compassCompany;
 	const url = `${baseUrl}/company/${companyId}`;
 
 	const response = await fetch(url, {
@@ -129,3 +130,5 @@ async function fetchGPS(provider, ids, accessToken) {
 		throw new Error(`Error: HTTP code ${response.status}`);
 	}
 }
+
+export { fetchAccessToken, fetchCompanyServices, fetchAllServices, fetchModemDetails, fetchGPS };

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getAllServices } from '../api';
+import { fetchAllServices } from '../api';
 import ModemCard from './ModemCard';
 
 const ServiceStatusDashboard = () => {
@@ -8,7 +8,7 @@ const ServiceStatusDashboard = () => {
 	useEffect(() => {
 		const fetchServices = async () => {
 			try {
-				const data = await getAllServices();
+				const data = await fetchAllServices();
 				setServices(data);
 			} catch (error) {
 				console.error('Error fetching services:', error);

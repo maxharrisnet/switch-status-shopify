@@ -3,7 +3,7 @@
 client_id = "593a8884245002fd79fb883f20a3a2f5"
 name = "switch-status"
 handle = "switch-status"
-application_url = "https://done-extraction-chick-scottish.trycloudflare.com"
+application_url = "https://rg-dayton-prepaid-aaa.trycloudflare.com"
 embedded = true
 
 [build]
@@ -16,9 +16,9 @@ scopes = ""
 
 [auth]
 redirect_urls = [
-  "https://done-extraction-chick-scottish.trycloudflare.com/auth/callback",
-  "https://done-extraction-chick-scottish.trycloudflare.com/auth/shopify/callback",
-  "https://done-extraction-chick-scottish.trycloudflare.com/api/auth/callback"
+  "https://rg-dayton-prepaid-aaa.trycloudflare.com/auth/callback",
+  "https://rg-dayton-prepaid-aaa.trycloudflare.com/auth/shopify/callback",
+  "https://rg-dayton-prepaid-aaa.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]

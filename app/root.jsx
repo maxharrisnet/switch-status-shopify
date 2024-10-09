@@ -1,5 +1,5 @@
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react';
-import { ServiceStatusDashboard } from './components/ServiceStatusDashboard';
+import ServiceStatusDashboard from './components/ServiceStatusDashboard';
 
 export default function App() {
 	return (
@@ -22,10 +22,10 @@ export default function App() {
 				<Links />
 			</head>
 			<body>
-				<h2>Hello Status!</h2>
+				<h2>Status!</h2>
 				<section>
-					<div class='container-sm'>
-						<div class='row sticky-top  bg-light p-4 mb-3 border-medium border-bottom'>
+					<div className='container-sm'>
+						<div className='row sticky-top  bg-light p-4 mb-3 border-medium border-bottom'>
 							<div>{/* logo */}</div>
 						</div>
 						<ServiceStatusDashboard />

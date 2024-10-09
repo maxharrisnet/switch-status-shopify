@@ -1,3 +1,5 @@
+// import { modemDetails }
+
 const ModemCard = ({ modem, service, modemDetails }) => {
 	const getLatencyClass = (latencyValue) => {
 		// Define your logic to determine the class based on latency value
