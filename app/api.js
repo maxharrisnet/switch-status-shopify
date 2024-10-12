@@ -1,14 +1,15 @@
-// Env variables S
-import dotenv from 'dotenv';
-dotenv.config();
+// Env variables
+// import dotenv from 'dotenv';
+// dotenv.config();
 
-const username = process.env.COMPASS_API_USERNAME;
-const password = process.env.COMPASS_API_PASSWORD;
-const compassCompany = process.env.COMPASS_COMPANY_ID;
-const accessToken = await fetchAccessToken();
+const username = process.env.SHOPIFY_PUBLIC_COMPASS_API_USERNAME;
+const password = process.env.SHOPIFY_PUBLIC_COMPASS_API_PASSWORD;
+const compassCompany = process.env.SHOPIFY_PUBLIC_COMPASS_COMPANY_ID;
 
 // Helper function to get the access token
 async function fetchAccessToken() {
+	console.log(process.env.SHOPIFY_PUBLIC_COMPASS_API_USERNAME);
+
 	const url = 'https://api-compass.speedcast.com/v2.0/auth';
 	const response = await fetch(url, {
 		method: 'POST',
@@ -25,9 +26,13 @@ async function fetchAccessToken() {
 		const data = await response.json();
 		return data.access_token;
 	} else {
+		const errorText = await response.text();
+		console.error(`Error: HTTP code ${response.status}, ${errorText}`);
 		throw new Error(`Error: HTTP code ${response.status}`);
 	}
 }
+
+const accessToken = await fetchAccessToken();
 
 // Function to fetch modem data for each company
 async function fetchCompanyServices(provider, params, accessToken) {

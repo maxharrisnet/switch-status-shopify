@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { fetchAllServices } from '../api';
-import ModemCard from './ModemCard';
+import ModemCard from '../components/ModemCard';
 
 const ServiceStatusDashboard = () => {
 	const [services, setServices] = useState([]);
-
+	console.log('bling bling');
+	console.log(process.env.SHOPIFY_PUBLIC_COMPASS_API_USERNAME);
 	useEffect(() => {
 		const fetchServices = async () => {
 			try {
@@ -20,6 +21,7 @@ const ServiceStatusDashboard = () => {
 
 	return (
 		<section>
+			<h2>#dashboard</h2>
 			{services.map((service) => (
 				<ModemCard
 					key={service.id}
