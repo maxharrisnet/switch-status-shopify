@@ -1,13 +1,15 @@
-// routes/api.js
+import axios from 'axios';
 import express from 'express';
 const router = express.Router();
-import axios from 'axios';
 
-// const username = process.env.SHOPIFY_PUBLIC_COMPASS_API_USERNAME;
-// const password = process.env.SHOPIFY_PUBLIC_COMPASS_API_PASSWORD;
-// const compassCompany = process.env.SHOPIFY_PUBLIC_COMPASS_COMPANY_ID;
-// console.log(compassCompany);
+const username = process.env.SHOPIFY_PUBLIC_COMPASS_API_USERNAME;
+const password = process.env.SHOPIFY_PUBLIC_COMPASS_API_PASSWORD;
+const compassCompany = process.env.SHOPIFY_PUBLIC_COMPASS_COMPANY_ID;
 const apiEndpoint = 'https://api-compass.speedcast.com/v2.0';
+console.log('######Status Server######');
+console.log(compassCompany);
+
+let accessToken = null;
 
 // Access Token
 axios
@@ -17,13 +19,59 @@ axios
 	})
 	.then((response) => {
 		const accessToken = response.data.access_token;
-		// Use the access token to authenticate subsequent requests
+		console.log('Access token retrieved:', accessToken);
 	})
 	.catch((error) => {
-		console.error(error);
+		console.error('Error retrieving access token:', error);
 	});
 
-// Define your API endpoints
+router.get('get-access-token', (req, res) => {
+	if (!accessToken) {
+		return res.status(500).json({ message: 'Access token not available' });
+	}
+	res.json({ accessToken });
+});
+
+// API Key
+router.get('/get-api-key', (req, res) => {
+	if (!req.isAuthenticated()) {
+		return res.status(401).json({ message: 'Unauthorized' });
+	}
+	res.json({ apiKey: process.env.SHOPIFY_API_KEY });
+});
+
+// Services Data
+router.get('/services', async (req, res) => {
+	try {
+		const accessToken = req.headers.authorization;
+
+		if (!accessToken) {
+			return res.status(401).json({ message: 'Unauthorized' });
+		}
+
+		const baseUrl = 'https://api-compass.speedcast.com/v2.0';
+		const companyId = compassCompany;
+		const url = `${baseUrl}/company/${companyId}`;
+
+		const response = await axios.get(url, {
+			headers: {
+				Authorization: `Bearer ${accessToken}`,
+			},
+		});
+
+		if (response.ok) {
+			const data = await response.json();
+			res.json(data);
+		} else {
+			res.status(response.status).json({ message: 'Error fetching services' });
+		}
+	} catch (error) {
+		console.error('Error fetching services:', error);
+		res.status(500).json({ message: 'Error fetching services' });
+	}
+});
+
+// Modem Details Data
 router.get(`${apiEndpoint}/modem-details/:provider/:modemId`, async (req, res) => {
 	try {
 		const provider = req.params.provider;
@@ -45,6 +93,7 @@ router.get(`${apiEndpoint}/modem-details/:provider/:modemId`, async (req, res) =
 	}
 });
 
+// GPS Data
 router.get(`${apiEndpoint}/gps/:provider/:modemId`, async (req, res) => {
 	try {
 		const provider = req.params.provider;
@@ -65,6 +114,7 @@ router.get(`${apiEndpoint}/gps/:provider/:modemId`, async (req, res) => {
 	}
 });
 
+// PROBABLY MOVE THESE TO THE COMPONENTS
 // Define your getServiceURL function
 function getServiceURL(provider, modemId) {
 	// Implement your getServiceURL logic here

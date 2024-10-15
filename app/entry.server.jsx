@@ -6,13 +6,11 @@ import { isbot } from 'isbot';
 import { addDocumentResponseHeaders } from './shopify.server';
 
 const ABORT_DELAY = 5000;
-console.log(process.env.SHOPIFY_PUBLIC_COMPASS_COMPANY_ID);
 
 export default async function handleRequest(request, responseStatusCode, responseHeaders, remixContext) {
 	addDocumentResponseHeaders(request, responseHeaders);
 	const userAgent = request.headers.get('user-agent');
 	const callbackName = isbot(userAgent ?? '') ? 'onAllReady' : 'onShellReady';
-	console.log(process.env.SHOPIFY_PUBLIC_COMPASS_COMPANY_ID);
 
 	return new Promise((resolve, reject) => {
 		const { pipe, abort } = renderToPipeableStream(
