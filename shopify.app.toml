@@ -3,7 +3,7 @@
 client_id = "593a8884245002fd79fb883f20a3a2f5"
 name = "switch-status"
 handle = "switch-status"
-application_url = "https://counsel-mason-failed-gerald.trycloudflare.com"
+application_url = "https://council-gp-potentially-subtle.trycloudflare.com"
 embedded = true
 
 [build]
@@ -16,9 +16,9 @@ scopes = ""
 
 [auth]
 redirect_urls = [
-  "https://counsel-mason-failed-gerald.trycloudflare.com/auth/callback",
-  "https://counsel-mason-failed-gerald.trycloudflare.com/auth/shopify/callback",
-  "https://counsel-mason-failed-gerald.trycloudflare.com/api/auth/callback"
+  "https://council-gp-potentially-subtle.trycloudflare.com/auth/callback",
+  "https://council-gp-potentially-subtle.trycloudflare.com/auth/shopify/callback",
+  "https://council-gp-potentially-subtle.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]
