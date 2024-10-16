@@ -3,11 +3,11 @@
 client_id = "593a8884245002fd79fb883f20a3a2f5"
 name = "switch-status"
 handle = "switch-status"
-application_url = "https://council-gp-potentially-subtle.trycloudflare.com"
+application_url = "https://0597-209-52-88-100.ngrok-free.app"
 embedded = true
 
 [build]
-automatically_update_urls_on_dev = true
+automatically_update_urls_on_dev = false
 dev_store_url = "gsan-test.myshopify.com"
 
 [access_scopes]
@@ -16,9 +16,9 @@ scopes = ""
 
 [auth]
 redirect_urls = [
-  "https://council-gp-potentially-subtle.trycloudflare.com/auth/callback",
-  "https://council-gp-potentially-subtle.trycloudflare.com/auth/shopify/callback",
-  "https://council-gp-potentially-subtle.trycloudflare.com/api/auth/callback"
+  "https://0597-209-52-88-100.ngrok-free.app/auth/callback",
+  "https://0597-209-52-88-100.ngrok-free.app/auth/shopify/callback",
+  "https://0597-209-52-88-100.ngrok-free.app/api/auth/callback"
 ]
 
 [webhooks]

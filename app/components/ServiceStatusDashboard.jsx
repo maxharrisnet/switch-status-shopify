@@ -11,7 +11,7 @@ const ServiceStatusDashboard = () => {
 	useEffect(() => {
 		const fetchAccessToken = async () => {
 			try {
-				const response = await fetch('/get-access-token');
+				const response = await fetch('/api/get-access-token');
 				if (!response.ok) {
 					throw new Error(`Error: HTTP code ${response.status}`);
 				}
@@ -31,7 +31,7 @@ const ServiceStatusDashboard = () => {
 		const fetchServices = async () => {
 			try {
 				const accessToken = localStorage.getItem('accessToken');
-				const response = await fetch('/services', {
+				const response = await fetch('/api/services', {
 					headers: {
 						Authorization: `Bearer ${accessToken}`,
 					},
