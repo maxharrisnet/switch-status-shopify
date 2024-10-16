@@ -4,25 +4,8 @@ import { RemixServer } from '@remix-run/react';
 import { createReadableStreamFromReadable } from '@remix-run/node';
 import { isbot } from 'isbot';
 import { addDocumentResponseHeaders } from './shopify.server';
-import express from 'express';
-import dotenv from 'dotenv';
 
-dotenv.config();
-
-const app = express();
 const ABORT_DELAY = 5000;
-
-// Use dynamic import for the router
-(async () => {
-	const apiRouter = await import('./routes/api.jsx');
-	app.use('/api', apiRouter.default);
-})();
-
-// Start the server
-// const port = process.env.PORT || 3000;
-// app.listen(port, () => {
-// 	console.log(`Server is running on port ${port} !`);
-// });
 
 // Remix code
 export default async function handleRequest(request, responseStatusCode, responseHeaders, remixContext) {

@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-// import createApp from '@shopify/app-bridge';
-// import { Redirect } from '@shopify/app-bridge/actions';
 import ModemCard from '../components/ModemCard';
 
 const ServiceStatusDashboard = () => {
@@ -13,7 +11,7 @@ const ServiceStatusDashboard = () => {
 			try {
 				const response = await fetch('/api/get-access-token');
 				if (!response.ok) {
-					throw new Error(`Error: HTTP code ${response.status}`);
+					throw new Error(`🥸 Error: HTTP code ${response.status}`);
 				}
 				const data = await response.json();
 				localStorage.setItem('accessToken', data.accessToken);
@@ -31,6 +29,11 @@ const ServiceStatusDashboard = () => {
 		const fetchServices = async () => {
 			try {
 				const accessToken = localStorage.getItem('accessToken');
+				if (!accessToken) {
+					throw new Error('Access token not available');
+				}
+				console.log(`Local AccessToken: ${accessToken}`);
+
 				const response = await fetch('/api/services', {
 					headers: {
 						Authorization: `Bearer ${accessToken}`,
@@ -55,7 +58,7 @@ const ServiceStatusDashboard = () => {
 	}
 
 	if (error) {
-		return <div>🤔 Error: {error} <br /></div>;
+		return <p>🤔 Error: {error}</p>;
 	}
 
 	return (

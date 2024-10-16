@@ -6,42 +6,9 @@ dotenv.config();
 
 const router = express.Router();
 
-// API variables
-const username = process.env.SHOPIFY_PUBLIC_COMPASS_API_USERNAME;
-const password = process.env.SHOPIFY_PUBLIC_COMPASS_API_PASSWORD;
 const compassCompany = process.env.SHOPIFY_PUBLIC_COMPASS_COMPANY_ID;
 const apiEndpoint = 'https://api-compass.speedcast.com/v2.0';
 
-let accessToken = null;
-
-// Access Token
-axios
-	.post(`${apiEndpoint}/auth`, {
-		username,
-		password,
-	})
-	.then((response) => {
-		const accessToken = response.data.access_token;
-		console.log('Access token retrieved:', accessToken);
-	})
-	.catch((error) => {
-		console.error('Error retrieving access token:', error);
-	});
-
-router.get('/get-access-token', (req, res) => {
-	if (!accessToken) {
-		return res.status(500).json({ message: 'Access token not available' });
-	}
-	res.json({ accessToken });
-});
-
-// API Key
-router.get('/get-api-key', (req, res) => {
-	if (!req.isAuthenticated()) {
-		return res.status(401).json({ message: 'Unauthorized' });
-	}
-	res.json({ apiKey: process.env.SHOPIFY_API_KEY });
-});
 
 // Services Data
 router.get('/services', async (req, res) => {
