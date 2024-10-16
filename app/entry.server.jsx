@@ -19,10 +19,10 @@ const ABORT_DELAY = 5000;
 })();
 
 // Start the server
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-	console.log(`Server is running on port ${port} !`);
-});
+// const port = process.env.PORT || 3000;
+// app.listen(port, () => {
+// 	console.log(`Server is running on port ${port} !`);
+// });
 
 // Remix code
 export default async function handleRequest(request, responseStatusCode, responseHeaders, remixContext) {
