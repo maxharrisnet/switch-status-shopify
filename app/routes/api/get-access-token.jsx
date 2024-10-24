@@ -8,6 +8,7 @@ dotenv.config();
 const username = process.env.SHOPIFY_PUBLIC_COMPASS_API_USERNAME;
 const password = process.env.SHOPIFY_PUBLIC_COMPASS_API_PASSWORD;
 const apiEndpoint = 'https://api-compass.speedcast.com/v2.0';
+console.log(process.env);
 
 let accessToken = null;
 
