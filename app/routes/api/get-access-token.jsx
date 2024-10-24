@@ -12,7 +12,7 @@ console.log(process.env);
 
 let accessToken = null;
 
-// Access Token
+// Access Token?
 axios
 	.post(`${apiEndpoint}/auth`, {
 		username,
