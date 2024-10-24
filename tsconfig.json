@@ -1,7 +1,16 @@
 {
-  "include": ["env.d.ts", "**/*.ts", "**/*.tsx", "app/routes/api/services.jsx"],
+  "include": [
+    "env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "app/routes/api/**/*.jsx"
+  ],
   "compilerOptions": {
-    "lib": ["DOM", "DOM.Iterable", "ES2022"],
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ES2022"
+    ],
     "strict": true,
     "skipLibCheck": true,
     "isolatedModules": true,
@@ -16,6 +25,8 @@
     "moduleResolution": "Bundler",
     "target": "ES2022",
     "baseUrl": ".",
-    "types": ["node"]
+    "types": [
+      "node"
+    ]
   }
 }
